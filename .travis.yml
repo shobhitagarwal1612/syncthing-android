@@ -2,6 +2,9 @@ sudo: required
 language: android
 jdk: oraclejdk8
 
+git:
+  submodules_depth: 10
+
 # Install Android SDK
 android:
   components:
