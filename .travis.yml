@@ -19,7 +19,7 @@ android:
 # Install Golang
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install golang -y
+  - sudo apt-get install golang git -y
 
 # Cache gradle dependencies
 # https://docs.travis-ci.com/user/languages/android/#Caching
