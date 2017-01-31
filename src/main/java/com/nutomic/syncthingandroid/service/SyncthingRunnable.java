@@ -48,9 +48,10 @@ public class SyncthingRunnable implements Runnable {
     private final File mLogFile;
 
     public enum Command {
-        generate, // Generate keys, a config file and immediately exit.
-        main,     // Run the main Syncthing application.
-        reset,    // Reset Syncthing's indexes
+        generate,       // Generate keys, a config file and immediately exit.
+        main,           // Run the main Syncthing application.
+        reset-database, // Reset Syncthing's database, forcing a full rescan and resync
+        reset-deltas,   // Reset Syncthing's delta index IDs, forcing a full index exchange
     }
 
     /**
@@ -69,8 +70,11 @@ public class SyncthingRunnable implements Runnable {
             case main:
                 mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-no-browser" };
                 break;
-            case reset:
-                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset" };
+            case reset-database:
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset-database" };
+                break;
+            case reset-deltas:
+                mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset-deltas" };
                 break;
             default:
                 Log.w(TAG, "Unknown command option");
