@@ -57,13 +57,13 @@ public class SyncthingService extends Service implements
      * Intent action to reset Syncthing's database.
      */
     public static final String ACTION_RESET_DATABASE =
-            "com.nutomic.syncthingandroid.service.SyncthingService.RESET-DATABASE";
+            "com.nutomic.syncthingandroid.service.SyncthingService.RESET_DATABASE";
 
     /**
      * Intent action to reset Syncthing's delta index IDs.
      */
     public static final String ACTION_RESET_DELTAS =
-            "com.nutomic.syncthingandroid.service.SyncthingService.RESET-DELTAS";
+            "com.nutomic.syncthingandroid.service.SyncthingService.RESET_DELTAS";
 
     /**
      * Interval in ms at which the GUI is updated (eg {@link com.nutomic.syncthingandroid.fragments.DrawerFragment}).
