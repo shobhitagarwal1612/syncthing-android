@@ -50,8 +50,8 @@ public class SyncthingRunnable implements Runnable {
     public enum Command {
         generate,       // Generate keys, a config file and immediately exit.
         main,           // Run the main Syncthing application.
-        reset-database, // Reset Syncthing's database, forcing a full rescan and resync
-        reset-deltas,   // Reset Syncthing's delta index IDs, forcing a full index exchange
+        resetdatabase, // Reset Syncthing's database, forcing a full rescan and resync
+        resetdeltas,   // Reset Syncthing's delta index IDs, forcing a full index exchange
     }
 
     /**
@@ -70,10 +70,10 @@ public class SyncthingRunnable implements Runnable {
             case main:
                 mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-no-browser" };
                 break;
-            case reset-database:
+            case resetdatabase:
                 mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset-database" };
                 break;
-            case reset-deltas:
+            case resetdeltas:
                 mCommand = new String[]{ mSyncthingBinary, "-home", mContext.getFilesDir().toString(), "-reset-deltas" };
                 break;
             default:
