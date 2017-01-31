@@ -56,8 +56,14 @@ public class SyncthingService extends Service implements
     /**
      * Intent action to reset Syncthing's database.
      */
-    public static final String ACTION_RESET =
-            "com.nutomic.syncthingandroid.service.SyncthingService.RESET";
+    public static final String ACTION_RESET_DATABASE =
+            "com.nutomic.syncthingandroid.service.SyncthingService.RESET-DATABASE";
+
+    /**
+     * Intent action to reset Syncthing's delta index IDs.
+     */
+    public static final String ACTION_RESET_DELTAS =
+            "com.nutomic.syncthingandroid.service.SyncthingService.RESET-DELTAS";
 
     /**
      * Interval in ms at which the GUI is updated (eg {@link com.nutomic.syncthingandroid.fragments.DrawerFragment}).
@@ -178,9 +184,14 @@ public class SyncthingService extends Service implements
             shutdown();
             mCurrentState = State.INIT;
             updateState();
-        } else if (ACTION_RESET.equals(intent.getAction())) {
+        } else if (ACTION_RESET_DATABASE.equals(intent.getAction())) {
             shutdown();
-            new SyncthingRunnable(this, SyncthingRunnable.Command.reset).run();
+            new SyncthingRunnable(this, SyncthingRunnable.Command.reset-database).run();
+            mCurrentState = State.INIT;
+            updateState();
+        } else if (ACTION_RESET_DELTAS.equals(intent.getAction())) {
+            shutdown();
+            new SyncthingRunnable(this, SyncthingRunnable.Command.reset-deltas).run();
             mCurrentState = State.INIT;
             updateState();
         } else if (mCurrentState != State.INIT) {
