@@ -335,16 +335,27 @@ Please report any problems you encounter via Github.</string>
     <!-- Toast after entering invalid STTRACE params -->
     <string name="toast_invalid_sttrace">Only 0-9, a-z and \',\' are allowed in STTRACE options</string>
 
-    <!-- Title for the preference to reset Syncthing indexes -->
-    <string name="streset_title">Reset Database</string>
+    <!-- Title for the preference to reset Syncthing database -->
+    <string name="streset_database_title">Reset Database</string>
 
-    <!-- Syncthing was reset -->
-    <string name="streset_question">This action should only be performed based on a recommendation from our support team.
-        \nAre you sure you want to clear Syncthing\'s index database?
+    <!-- Toast shown before Syncthing database reset -->
+    <string name="streset_database_question">This action should only be performed based on a recommendation from our support team.
+        \nAre you sure you want to clear Syncthing\'s database?
     </string>
 
-    <!-- Syncthing was reset -->
-    <string name="streset_done">Successfully reset Syncthing\'s database</string>
+    <!-- Syncthing database was reset -->
+    <string name="streset_database_done">Successfully reset Syncthing\'s database</string>
+    
+    <!-- Title for the preference to reset Syncthing delta index IDs -->
+    <string name="streset_deltas_title">Reset Delta Index IDs</string>
+
+    <!-- Toast shown before Syncthing delta index ID reset -->
+    <string name="streset_deltas_question">This action should only be performed based on a recommendation from our support team.
+        \nAre you sure you want to clear Syncthing\'s delta index IDs?
+    </string>
+
+    <!-- Syncthing delta index IDs were reset -->
+    <string name="streset_deltas_done">Successfully reset Syncthing\'s delta index IDs</string>
 
     <string name="category_about">About</string>
 
