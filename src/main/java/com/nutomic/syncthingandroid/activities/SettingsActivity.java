@@ -48,7 +48,8 @@ public class SettingsActivity extends SyncthingActivity {
         private static final String KEY_STTRACE = "sttrace";
         private static final String KEY_EXPORT_CONFIG = "export_config";
         private static final String KEY_IMPORT_CONFIG = "import_config";
-        private static final String KEY_STRESET = "streset";
+        private static final String KEY_STRESET_DATABASE = "streset_database";
+        private static final String KEY_STRESET_DELTAS = "streset_deltas";
 
         private CheckBoxPreference mAlwaysRunInBackground;
         private CheckBoxPreference mSyncOnlyCharging;
@@ -122,8 +123,9 @@ public class SettingsActivity extends SyncthingActivity {
             Preference exportConfig = findPreference("export_config");
             Preference importConfig = findPreference("import_config");
 
-            Preference stTrace      = findPreference("sttrace");
-            Preference stReset      = findPreference("streset");
+            Preference stTrace         = findPreference("sttrace");
+            Preference stResetDatabase = findPreference("streset_database");
+            Preference stResetDeltas   = findPreference("streset_deltas");
 
             mUseRoot              = (CheckBoxPreference) findPreference(SyncthingService.PREF_USE_ROOT);
             Preference useWakelock       = findPreference(SyncthingService.PREF_USE_WAKE_LOCK);
@@ -143,7 +145,8 @@ public class SettingsActivity extends SyncthingActivity {
             importConfig.setOnPreferenceClickListener(this);
 
             stTrace.setOnPreferenceChangeListener(this);
-            stReset.setOnPreferenceClickListener(this);
+            stResetDatabase.setOnPreferenceClickListener(this);
+            stResetDeltas.setOnPreferenceClickListener(this);
 
             mUseRoot.setOnPreferenceChangeListener(this);
             useWakelock.setOnPreferenceChangeListener(this::onRequireRestart);
@@ -343,16 +346,31 @@ public class SettingsActivity extends SyncthingActivity {
                             .setNegativeButton(android.R.string.no, null)
                             .show();
                     return true;
-                case KEY_STRESET:
+                case KEY_STRESET_DATABASE:
                     final Intent intent = new Intent(getActivity(), SyncthingService.class)
-                            .setAction(SyncthingService.ACTION_RESET);
+                            .setAction(SyncthingService.ACTION_RESET_DATABASE);
 
                     new AlertDialog.Builder(getActivity())
-                            .setTitle(R.string.streset_title)
-                            .setMessage(R.string.streset_question)
+                            .setTitle(R.string.streset_database_title)
+                            .setMessage(R.string.streset_database_question)
                             .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
                                 getActivity().startService(intent);
-                                Toast.makeText(getActivity(), R.string.streset_done, Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity(), R.string.streset_database_done, Toast.LENGTH_LONG).show();
+                            })
+                            .setNegativeButton(android.R.string.no, (dialogInterface, i) -> {
+                            })
+                            .show();
+                    return true;
+                case KEY_STRESET_DELTAS:
+                    final Intent intent = new Intent(getActivity(), SyncthingService.class)
+                            .setAction(SyncthingService.ACTION_RESET_DELTAS);
+
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle(R.string.streset_deltas_title)
+                            .setMessage(R.string.streset_deltas_question)
+                            .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {
+                                getActivity().startService(intent);
+                                Toast.makeText(getActivity(), R.string.streset_deltas_done, Toast.LENGTH_LONG).show();
                             })
                             .setNegativeButton(android.R.string.no, (dialogInterface, i) -> {
                             })
