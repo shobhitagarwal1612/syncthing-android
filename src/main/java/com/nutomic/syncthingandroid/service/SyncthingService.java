@@ -186,12 +186,12 @@ public class SyncthingService extends Service implements
             updateState();
         } else if (ACTION_RESET_DATABASE.equals(intent.getAction())) {
             shutdown();
-            new SyncthingRunnable(this, SyncthingRunnable.Command.reset-database).run();
+            new SyncthingRunnable(this, SyncthingRunnable.Command.resetdatabase).run();
             mCurrentState = State.INIT;
             updateState();
         } else if (ACTION_RESET_DELTAS.equals(intent.getAction())) {
             shutdown();
-            new SyncthingRunnable(this, SyncthingRunnable.Command.reset-deltas).run();
+            new SyncthingRunnable(this, SyncthingRunnable.Command.resetdeltas).run();
             mCurrentState = State.INIT;
             updateState();
         } else if (mCurrentState != State.INIT) {
